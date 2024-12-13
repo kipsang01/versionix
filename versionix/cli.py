@@ -25,6 +25,9 @@ def main():
     # Log command
     subparsers.add_parser('log', help='Show commit history')
 
+    # Status command
+    subparsers.add_parser('status', help='Show repository status')
+
     # Branch command
     branch_parser = subparsers.add_parser('branch', help='Create or list branches')
     branch_parser.add_argument('name', nargs='?', help='Branch name to create')
@@ -57,37 +60,41 @@ def main():
                 print(f"Initialized empty VSX repository in {os.path.abspath(args.path)}")
 
             case 'add':
-                vcs = Versionix()
+                vsx = Versionix()
                 for file in args.files:
-                    vcs.add(file)
+                    vsx.add(file)
 
             case 'commit':
-                vcs = Versionix()
-                vcs.commit(args.message)
+                vsx = Versionix()
+                vsx.commit(args.message)
 
             case 'log':
-                vcs = Versionix()
-                vcs.log()
+                vsx = Versionix()
+                vsx.log()
+
+            case 'status':
+                vsx = Versionix()
+                vsx.status()
 
             case 'branch':
-                vcs = Versionix()
-                vcs.branch(args.name)
+                vsx = Versionix()
+                vsx.branch(args.name)
 
             case 'checkout':
-                vcs = Versionix()
-                vcs.checkout(args.name)
+                vsx = Versionix()
+                vsx.checkout(args.name)
 
             case 'diff':
-                vcs = Versionix()
-                vcs.diff(args.branch1, args.branch2)
+                vsx = Versionix()
+                vsx.diff(args.branch1, args.branch2)
 
             case 'merge':
-                vcs = Versionix()
-                vcs.merge(args.branch1, args.branch2)
+                vsx = Versionix()
+                vsx.merge(args.branch1, args.branch2)
 
             case 'clone':
-                vcs = Versionix(args.source)
-                vcs.clone(args.destination)
+                vsx = Versionix(args.source)
+                vsx.clone(args.destination)
 
             case _:
                 parser.print_help()

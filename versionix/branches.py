@@ -245,13 +245,3 @@ class BranchManager:
                 full_path = os.path.join(self.repo_path, tracked_file)
                 if os.path.exists(full_path):
                     os.remove(full_path)
-
-    def merge_branches(self, source_branch: str, target_branch: str):
-        """
-        Merge one branch into another
-
-        :param source_branch: Branch to merge from
-        :param target_branch: Branch to merge into
-        """
-        print(f"Merging {source_branch} into {target_branch}")
-        #TODO: Implement merge
